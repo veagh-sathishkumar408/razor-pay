@@ -1,0 +1,21 @@
+<div class="container">
+  <h2>Transaction (basic) form</h2>
+  <form [formGroup]="paymentForm">
+    <div class="form-group">
+      <label for="text">Payment Mode:</label>
+      <input type="text" class="form-control" id="paymentmode" placeholder="" name="paymentmode" value="Razor-pay"
+        disabled>
+    </div>
+    <div class="form-group">
+      <label for="number">Amount:</label>
+      <input type="text" class="form-control" formControlName="amount" id="amount" placeholder="Enter amount"
+        name="amount">
+      <label *ngIf="control.amount.errors?.required && control.amount.touched" class="invalid"> Please Provide the
+        amount </label>
+      <label *ngIf="control.amount.errors?.pattern && control.amount.touched" class="invalid"> Please Provide the valid
+        amount </label>
+    </div>
+    <button type="submit" (click)="payWithRazor()" [disabled]='paymentForm.invalid'
+      class="btn btn-default">Submit</button>
+  </form>
+</div>
